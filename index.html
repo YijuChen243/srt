@@ -25,10 +25,12 @@
   --blue: #185FA5;
   --blue-pale: #E6F1FB;
   --blue-border: #93C5FD;
+  --orange-bg: #FFFBEB;
+  --orange-border: #FDE68A;
+  --orange-text: #92400E;
   --radius: 10px;
   --radius-sm: 6px;
   --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.08);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,34 +43,35 @@ body {
   font-size: 14px;
 }
 
-/* ── Layout ── */
 .app { max-width: 740px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-/* ── Header ── */
+/* Header */
 header {
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 2rem; gap: 1rem; flex-wrap: wrap;
 }
-.logo { font-size: 20px; font-weight: 700; letter-spacing: -.5px; color: var(--text); }
+.logo { font-size: 20px; font-weight: 700; letter-spacing: -.5px; }
 .logo em { color: var(--green); font-style: normal; }
-.logo small { font-size: 11px; font-weight: 400; color: var(--text-3); display: block; margin-top: 1px; letter-spacing: .02em; }
-
+.logo small { font-size: 11px; font-weight: 400; color: var(--text-3); display: block; margin-top: 1px; }
 .key-wrap { display: flex; align-items: center; gap: 8px; flex: 1; max-width: 340px; }
 .key-wrap label { font-size: 11px; color: var(--text-3); white-space: nowrap; text-transform: uppercase; letter-spacing: .05em; }
 .key-input {
   flex: 1; padding: 7px 11px; font-size: 13px; font-family: 'JetBrains Mono', monospace;
   border: 1px solid var(--border-2); border-radius: var(--radius-sm);
-  background: var(--bg-2); color: var(--text); outline: none;
-  transition: border-color .2s;
+  background: var(--bg-2); color: var(--text); outline: none; transition: border-color .2s;
 }
 .key-input:focus { border-color: var(--green-mid); }
 
-/* ── Tabs ── */
-.tabs { display: flex; gap: 2px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; margin-bottom: 1.5rem; box-shadow: var(--shadow); }
+/* Tabs */
+.tabs {
+  display: flex; gap: 2px; background: var(--bg-2);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 4px; margin-bottom: 1.5rem; box-shadow: var(--shadow);
+}
 .tab {
   flex: 1; padding: 8px; font-size: 13px; font-weight: 500; color: var(--text-2);
-  background: none; border: none; border-radius: 7px; cursor: pointer; transition: all .15s;
-  font-family: 'Noto Sans TC', sans-serif;
+  background: none; border: none; border-radius: 7px; cursor: pointer;
+  transition: all .15s; font-family: 'Noto Sans TC', sans-serif;
 }
 .tab:hover { background: var(--bg); color: var(--text); }
 .tab.active { background: var(--green); color: #fff; }
@@ -76,127 +79,100 @@ header {
 .panel { display: none; }
 .panel.active { display: block; }
 
-/* ── Card ── */
+/* Card */
 .card {
   background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1.5rem;
+  border-radius: var(--radius); padding: 1.25rem;
   box-shadow: var(--shadow); margin-bottom: 1rem;
 }
 
-/* ── Dropzone ── */
+/* Howto */
+.howto { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; box-shadow: var(--shadow); margin-bottom: 1rem; }
+.howto-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: .75rem; }
+.step { display: flex; gap: 10px; align-items: flex-start; margin-bottom: .55rem; font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.step:last-child { margin-bottom: 0; }
+.step-n { background: var(--green); color: #fff; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+
+/* Dropzone */
 .dropzone {
   border: 2px dashed var(--border-2); border-radius: var(--radius);
   padding: 2.5rem 2rem; text-align: center; cursor: pointer;
-  transition: all .2s; position: relative; overflow: hidden;
-  background: linear-gradient(135deg, #F0FBF6 0%, #F8F9F7 100%);
+  transition: all .2s; background: linear-gradient(135deg, #F0FBF6 0%, #F8F9F7 100%);
+  margin-bottom: 1rem;
 }
 .dropzone:hover, .dropzone.dragover { border-color: var(--green-mid); background: var(--green-pale); }
-.dz-icon {
-  width: 48px; height: 48px; margin: 0 auto .875rem;
-  background: var(--green-pale); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
+.dz-icon { width: 48px; height: 48px; margin: 0 auto .875rem; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .dz-icon svg { width: 22px; height: 22px; stroke: var(--green); fill: none; stroke-width: 1.75; }
-.dz-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+.dz-title { font-size: 15px; font-weight: 500; margin-bottom: 5px; }
 .dz-sub { font-size: 12px; color: var(--text-3); }
-.dz-pick {
-  display: inline-block; margin-top: .875rem; padding: 7px 18px;
-  font-size: 13px; background: var(--bg-2); border: 1px solid var(--border-2);
-  border-radius: 99px; color: var(--text-2); cursor: pointer;
-  transition: all .15s; font-family: 'Noto Sans TC', sans-serif;
-}
+.dz-pick { display: inline-block; margin-top: .875rem; padding: 7px 18px; font-size: 13px; background: var(--bg-2); border: 1px solid var(--border-2); border-radius: 99px; color: var(--text-2); cursor: pointer; transition: all .15s; font-family: 'Noto Sans TC', sans-serif; }
 .dz-pick:hover { border-color: var(--green-mid); color: var(--green); }
 
-/* ── File badge ── */
-.file-badge {
-  display: flex; align-items: center; gap: 8px; margin-top: .875rem;
-  padding: 9px 12px; background: var(--green-pale);
-  border: 1px solid var(--green-mid); border-radius: var(--radius-sm);
-  font-size: 13px; color: var(--green);
-}
+/* File badge */
+.file-badge { display: flex; align-items: center; gap: 8px; margin-bottom: .875rem; padding: 9px 12px; background: var(--green-pale); border: 1px solid var(--green-mid); border-radius: var(--radius-sm); font-size: 13px; color: var(--green); }
 .file-badge svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 1.75; flex-shrink: 0; }
 .file-badge span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* ── Settings ── */
-.settings { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem; margin-top: .875rem; }
+/* Audio process status */
+.process-status {
+  display: none; margin-bottom: .875rem; padding: 11px 13px;
+  background: #EFF6FF; border: 1px solid #BFDBFE;
+  border-radius: var(--radius-sm); font-size: 13px; color: #1E40AF;
+  align-items: center; gap: 10px;
+}
+.process-status.show { display: flex; }
+.mini-spin { width: 14px; height: 14px; border: 2px solid #BFDBFE; border-top-color: #1E40AF; border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0; }
+
+/* Audio info badge */
+.audio-info { display: none; margin-bottom: .875rem; padding: 9px 12px; background: var(--green-pale); border: 1px solid var(--green-mid); border-radius: var(--radius-sm); font-size: 13px; color: var(--green); align-items: center; gap: 8px; }
+.audio-info.show { display: flex; }
+.audio-info svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 1.75; flex-shrink: 0; }
+
+/* Settings */
+.settings { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem; margin-bottom: .875rem; }
 .sbox { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; }
 .sbox label { font-size: 11px; color: var(--text-3); display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .05em; }
-.sbox select, .sbox input[type=text] {
-  width: 100%; font-size: 13px; padding: 6px 8px;
-  border: 1px solid var(--border-2); border-radius: var(--radius-sm);
-  background: var(--bg-2); color: var(--text); outline: none;
-  font-family: 'Noto Sans TC', sans-serif; transition: border-color .2s;
-}
+.sbox select, .sbox input[type=text] { width: 100%; font-size: 13px; padding: 6px 8px; border: 1px solid var(--border-2); border-radius: var(--radius-sm); background: var(--bg-2); color: var(--text); outline: none; font-family: 'Noto Sans TC', sans-serif; transition: border-color .2s; }
 .sbox select:focus, .sbox input[type=text]:focus { border-color: var(--green-mid); }
 
-/* ── Run button ── */
-.run-btn {
-  width: 100%; margin-top: .875rem; padding: 12px;
-  font-size: 14px; font-weight: 700; letter-spacing: .02em;
-  background: var(--green); color: #fff; border: none;
-  border-radius: var(--radius-sm); cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: all .15s; font-family: 'Noto Sans TC', sans-serif;
-  box-shadow: 0 2px 8px rgba(15,110,86,.25);
-}
-.run-btn:hover:not(:disabled) { background: var(--green-light); box-shadow: 0 4px 14px rgba(15,110,86,.35); }
+/* Run button */
+.run-btn { width: 100%; padding: 12px; font-size: 14px; font-weight: 700; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all .15s; font-family: 'Noto Sans TC', sans-serif; box-shadow: 0 2px 8px rgba(15,110,86,.25); }
+.run-btn:hover:not(:disabled) { background: var(--green-light); }
 .run-btn:disabled { background: var(--border); color: var(--text-3); cursor: not-allowed; box-shadow: none; }
 
-/* ── Progress ── */
+/* Progress */
 .prog { margin-top: .875rem; display: none; }
-.prog-track { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
-.prog-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--green-mid)); border-radius: 99px; width: 0; transition: width .5s ease; }
+.prog-track { height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.prog-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--green-mid)); border-radius: 99px; width: 0; transition: width .4s ease; }
 .prog-lbl { font-size: 12px; color: var(--text-3); margin-top: 5px; }
 
-/* ── Notice / Error ── */
-.notice {
-  display: none; margin-top: .875rem; padding: 10px 12px;
-  background: #FFFBEB; border: 1px solid #FDE68A;
-  border-radius: var(--radius-sm); font-size: 12px; color: #92400E;
-}
-.err-box {
-  display: none; margin-top: .875rem; padding: 11px 13px;
-  background: var(--red-bg); border: 1px solid var(--red-border);
-  border-radius: var(--radius-sm); font-size: 13px; color: var(--red-text);
-}
+/* Notices */
+.notice { display: none; margin-bottom: .875rem; padding: 10px 12px; background: var(--orange-bg); border: 1px solid var(--orange-border); border-radius: var(--radius-sm); font-size: 12px; color: var(--orange-text); }
+.err-box { display: none; margin-top: .875rem; padding: 11px 13px; background: var(--red-bg); border: 1px solid var(--red-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--red-text); }
 
-/* ── Spinner ── */
-.spinner {
-  width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.3);
-  border-top-color: #fff; border-radius: 50%;
-  animation: spin .7s linear infinite; display: none;
-}
+/* Spinner */
+.spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; display: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── Stats ── */
+/* Stats */
 .stats { display: flex; gap: .875rem; margin-bottom: 1rem; }
 .stat { flex: 1; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; box-shadow: var(--shadow); text-align: center; }
 .stat-n { font-size: 24px; font-weight: 700; color: var(--green); font-family: 'JetBrains Mono', monospace; }
 .stat-l { font-size: 11px; color: var(--text-3); margin-top: 3px; text-transform: uppercase; letter-spacing: .05em; }
 
-/* ── Editor ── */
+/* Editor */
 .editor-wrap { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
 .ed-hdr { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--border); background: var(--bg); }
-.ed-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.ed-title { font-size: 13px; font-weight: 500; }
 .ed-actions { display: flex; gap: 6px; }
-.ed-btn {
-  font-size: 12px; padding: 5px 11px; border-radius: var(--radius-sm);
-  border: 1px solid var(--border-2); background: var(--bg-2);
-  color: var(--text-2); cursor: pointer; transition: all .15s;
-  font-family: 'Noto Sans TC', sans-serif;
-}
+.ed-btn { font-size: 12px; padding: 5px 11px; border-radius: var(--radius-sm); border: 1px solid var(--border-2); background: var(--bg-2); color: var(--text-2); cursor: pointer; transition: all .15s; font-family: 'Noto Sans TC', sans-serif; }
 .ed-btn:hover { border-color: var(--green-mid); color: var(--green); }
 
 .sub-list { max-height: 420px; overflow-y: auto; padding: 6px; }
 .sub-list::-webkit-scrollbar { width: 4px; }
-.sub-list::-webkit-scrollbar-track { background: transparent; }
 .sub-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 
-.sub-item {
-  display: flex; gap: 10px; padding: 9px 8px;
-  border-bottom: 1px solid var(--border); align-items: flex-start;
-  border-radius: var(--radius-sm); transition: background .1s;
-}
+.sub-item { display: flex; gap: 10px; padding: 9px 8px; border-bottom: 1px solid var(--border); align-items: flex-start; border-radius: var(--radius-sm); transition: background .1s; }
 .sub-item:last-child { border-bottom: none; }
 .sub-item:hover { background: var(--bg); }
 .sub-num { font-size: 11px; color: var(--text-3); min-width: 18px; padding-top: 3px; font-family: 'JetBrains Mono', monospace; }
@@ -204,18 +180,12 @@ header {
 .sub-ta { font-size: 14px; color: var(--text); flex: 1; border: none; background: transparent; resize: none; outline: none; font-family: 'Noto Sans TC', sans-serif; line-height: 1.6; }
 .del-btn { font-size: 12px; color: var(--text-3); background: none; border: none; cursor: pointer; padding: 2px 5px; border-radius: 4px; transition: color .1s; flex-shrink: 0; }
 .del-btn:hover { color: var(--red-text); }
-
 .empty-hint { padding: 2.5rem; text-align: center; font-size: 13px; color: var(--text-3); line-height: 1.7; }
 .empty-hint strong { display: block; font-size: 15px; color: var(--text-2); margin-bottom: 5px; }
 
-/* ── Export ── */
+/* Export */
 .exp-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1rem; }
-.exp-btn {
-  display: flex; align-items: center; gap: 8px;
-  padding: 11px 20px; border-radius: var(--radius-sm);
-  font-size: 14px; font-weight: 500; border: 1.5px solid;
-  cursor: pointer; transition: all .15s; font-family: 'Noto Sans TC', sans-serif;
-}
+.exp-btn { display: flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; border: 1.5px solid; cursor: pointer; transition: all .15s; font-family: 'Noto Sans TC', sans-serif; }
 .exp-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.75; }
 .btn-srt { color: var(--green); border-color: var(--green-mid); background: var(--green-pale); }
 .btn-srt:hover { background: var(--green); color: #fff; border-color: var(--green); }
@@ -224,13 +194,6 @@ header {
 
 .hint-card { margin-top: 1rem; padding: 14px 16px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-2); line-height: 1.8; }
 .hint-card strong { color: var(--text); font-weight: 500; }
-
-/* ── How-to ── */
-.howto { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; box-shadow: var(--shadow); margin-bottom: 1rem; }
-.howto-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: .75rem; }
-.step { display: flex; gap: 10px; align-items: flex-start; margin-bottom: .6rem; font-size: 13px; color: var(--text-2); }
-.step:last-child { margin-bottom: 0; }
-.step-n { background: var(--green); color: #fff; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
 </style>
 </head>
 <body>
@@ -238,7 +201,7 @@ header {
   <header>
     <div class="logo">
       字幕<em>工坊</em>
-      <small>影片 → 字幕 · Whisper AI</small>
+      <small>影片 → 字幕 · Whisper AI · 自動壓縮音訊</small>
     </div>
     <div class="key-wrap">
       <label>API Key</label>
@@ -256,13 +219,13 @@ header {
   <div id="tab-upload" class="panel active">
     <div class="howto">
       <div class="howto-title">使用說明</div>
-      <div class="step"><div class="step-n">1</div><div>在右上角貼入 OpenAI API Key（可至 <a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--green)">platform.openai.com</a> 取得）</div></div>
-      <div class="step"><div class="step-n">2</div><div>上傳影片或音訊檔案（MP4、MOV、MP3、WAV，最大 25 MB）</div></div>
+      <div class="step"><div class="step-n">1</div><div>在右上角貼入 OpenAI API Key</div></div>
+      <div class="step"><div class="step-n">2</div><div>上傳影片或音訊（MP4、MOV、MP3、WAV）— <strong>超過 25 MB 會自動壓縮音訊</strong></div></div>
       <div class="step"><div class="step-n">3</div><div>點擊「開始轉錄」，等待 AI 辨識完成</div></div>
-      <div class="step"><div class="step-n">4</div><div>在「字幕編輯」頁校對後，至「匯出」頁下載 SRT / TXT</div></div>
+      <div class="step"><div class="step-n">4</div><div>在「字幕編輯」頁校對，再至「匯出」頁下載 SRT / TXT</div></div>
     </div>
 
-    <div class="card" style="padding:0;overflow:hidden">
+    <div class="card">
       <div class="dropzone" id="dropzone"
         onclick="document.getElementById('fi').click()"
         ondragover="event.preventDefault();this.classList.add('dragover')"
@@ -272,41 +235,57 @@ header {
           <svg viewBox="0 0 24 24"><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/><path d="M12 4v12"/><path d="M8 8l4-4 4 4"/></svg>
         </div>
         <div class="dz-title">拖曳影片 / 音訊到此</div>
-        <div class="dz-sub">MP4 · MOV · MP3 · WAV · M4A（最大 25 MB）</div>
+        <div class="dz-sub">MP4 · MOV · MP3 · WAV · M4A · 超過 25 MB 自動壓縮</div>
         <button class="dz-pick" onclick="event.stopPropagation();document.getElementById('fi').click()">選擇檔案</button>
       </div>
       <input type="file" id="fi" style="display:none" accept="video/*,audio/*" onchange="onFile(this.files[0])">
-      <div style="padding: 0 1.25rem 1.25rem">
-        <div class="file-badge" id="fileBadge" style="display:none">
-          <svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7z"/><path d="M14 2v5h5"/></svg>
-          <span id="fileLabel"></span>
-        </div>
-        <div class="notice" id="sizeNotice">⚠️ 檔案超過 25 MB，請先壓縮音訊或截取片段後再上傳。</div>
-        <div class="settings">
-          <div class="sbox">
-            <label>辨識語言</label>
-            <select id="lang">
-              <option value="zh">中文（繁體）</option>
-              <option value="en">英文</option>
-              <option value="ja">日文</option>
-              <option value="">自動偵測</option>
-            </select>
-          </div>
-          <div class="sbox">
-            <label>提示詞（可選）</label>
-            <input type="text" id="prompt" placeholder="例：課程名稱、學生姓名">
-          </div>
-        </div>
-        <button class="run-btn" id="runBtn" onclick="doTranscribe()">
-          <div class="spinner" id="spinner"></div>
-          <span id="runLabel">開始轉錄</span>
-        </button>
-        <div class="prog" id="prog">
-          <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-          <div class="prog-lbl" id="progLbl">準備中…</div>
-        </div>
-        <div class="err-box" id="errBox"></div>
+
+      <!-- 原始檔案資訊 -->
+      <div class="file-badge" id="fileBadge" style="display:none">
+        <svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7z"/><path d="M14 2v5h5"/></svg>
+        <span id="fileLabel"></span>
       </div>
+
+      <!-- 壓縮處理中 -->
+      <div class="process-status" id="processStatus">
+        <div class="mini-spin"></div>
+        <span id="processLabel">正在擷取並壓縮音訊，請稍候…</span>
+      </div>
+
+      <!-- 壓縮後音訊資訊 -->
+      <div class="audio-info" id="audioInfo">
+        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <span id="audioLabel"></span>
+      </div>
+
+      <div class="notice" id="sizeNotice">⚠️ 檔案超過 25 MB，將自動擷取並壓縮音訊後再轉錄（畫面不會上傳，僅處理聲音）</div>
+
+      <div class="settings">
+        <div class="sbox">
+          <label>辨識語言</label>
+          <select id="lang">
+            <option value="zh">中文（繁體）</option>
+            <option value="en">英文</option>
+            <option value="ja">日文</option>
+            <option value="">自動偵測</option>
+          </select>
+        </div>
+        <div class="sbox">
+          <label>提示詞（可選）</label>
+          <input type="text" id="prompt" placeholder="例：課程名稱、學生姓名">
+        </div>
+      </div>
+
+      <button class="run-btn" id="runBtn" onclick="doTranscribe()">
+        <div class="spinner" id="spinner"></div>
+        <span id="runLabel">開始轉錄</span>
+      </button>
+
+      <div class="prog" id="prog">
+        <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+        <div class="prog-lbl" id="progLbl">準備中…</div>
+      </div>
+      <div class="err-box" id="errBox"></div>
     </div>
   </div>
 
@@ -338,7 +317,7 @@ header {
       <div class="stat"><div class="stat-n" id="eWords">0</div><div class="stat-l">字數</div></div>
     </div>
     <div class="card">
-      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.5rem">選擇匯出格式</div>
+      <div style="font-size:13px;font-weight:500;margin-bottom:.5rem">選擇匯出格式</div>
       <div class="exp-grid">
         <button class="exp-btn btn-srt" onclick="exportSRT()">
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7z"/><path d="M14 2v5h5M9 13h6M9 17h4"/></svg>
@@ -352,7 +331,7 @@ header {
     </div>
     <div class="hint-card">
       <strong>格式說明</strong><br>
-      <b>SRT</b> — 可直接匯入 YouTube Studio、DaVinci Resolve、Adobe Premiere Pro、威力導演。<br>
+      <b>SRT</b> — 可直接匯入 YouTube Studio、DaVinci Resolve、Adobe Premiere、威力導演。<br>
       <b>TXT</b> — 適合製作課堂講義、學習單，或貼入 Word 整理成文章。
     </div>
   </div>
@@ -361,6 +340,9 @@ header {
 <script>
 let subs = [];
 let curFile = null;
+let audioBlob = null; // 壓縮後的音訊 blob
+
+const MAX_SIZE = 24 * 1024 * 1024; // 24MB 安全值
 
 function switchTab(btn, name) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -377,19 +359,129 @@ function onDrop(e) {
   if (f) onFile(f);
 }
 
-function onFile(f) {
+async function onFile(f) {
   curFile = f;
-  const badge = document.getElementById('fileBadge');
-  badge.style.display = 'flex';
-  document.getElementById('fileLabel').textContent = f.name + '  (' + (f.size / 1024 / 1024).toFixed(1) + ' MB)';
-  document.getElementById('sizeNotice').style.display = f.size > 25 * 1024 * 1024 ? 'block' : 'none';
+  audioBlob = null;
+  const mb = (f.size / 1024 / 1024).toFixed(1);
+
+  document.getElementById('fileBadge').style.display = 'flex';
+  document.getElementById('fileLabel').textContent = f.name + '  (' + mb + ' MB)';
+  document.getElementById('audioInfo').classList.remove('show');
   hideErr();
+
+  if (f.size > MAX_SIZE) {
+    document.getElementById('sizeNotice').style.display = 'block';
+    // 自動開始擷取音訊
+    await extractAudio(f);
+  } else {
+    document.getElementById('sizeNotice').style.display = 'none';
+    audioBlob = f;
+  }
+}
+
+async function extractAudio(file) {
+  const status = document.getElementById('processStatus');
+  const label = document.getElementById('processLabel');
+  status.classList.add('show');
+  label.textContent = '正在讀取影片，擷取音訊中…';
+
+  try {
+    // 讀取原始檔案
+    const arrayBuf = await file.arrayBuffer();
+
+    label.textContent = '解碼音訊資料…';
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+    const decoded = await audioCtx.decodeAudioData(arrayBuf);
+
+    label.textContent = '壓縮音訊中（16kHz 單聲道）…';
+
+    // 降採樣到 16kHz 單聲道（Whisper 最適合的格式）
+    const targetSampleRate = 16000;
+    const numChannels = 1;
+    const length = decoded.length;
+
+    // 取得單聲道資料（取平均）
+    let channelData;
+    if (decoded.numberOfChannels === 1) {
+      channelData = decoded.getChannelData(0);
+    } else {
+      const left = decoded.getChannelData(0);
+      const right = decoded.getChannelData(1);
+      channelData = new Float32Array(left.length);
+      for (let i = 0; i < left.length; i++) {
+        channelData[i] = (left[i] + right[i]) / 2;
+      }
+    }
+
+    // 重採樣（如原始 sampleRate 不同）
+    let finalData = channelData;
+    if (decoded.sampleRate !== targetSampleRate) {
+      const ratio = decoded.sampleRate / targetSampleRate;
+      const newLength = Math.round(length / ratio);
+      const resampled = new Float32Array(newLength);
+      for (let i = 0; i < newLength; i++) {
+        resampled[i] = channelData[Math.round(i * ratio)] || 0;
+      }
+      finalData = resampled;
+    }
+
+    // 轉成 WAV
+    const wavBlob = encodeWAV(finalData, targetSampleRate);
+    audioBlob = wavBlob;
+
+    const sizeMB = (wavBlob.size / 1024 / 1024).toFixed(1);
+    status.classList.remove('show');
+    const ai = document.getElementById('audioInfo');
+    ai.classList.add('show');
+    document.getElementById('audioLabel').textContent =
+      `✅ 音訊已擷取並壓縮：${sizeMB} MB（原始 ${(file.size/1024/1024).toFixed(1)} MB）— 可直接轉錄`;
+
+    audioCtx.close();
+  } catch (e) {
+    status.classList.remove('show');
+    showErr('❌ 音訊擷取失敗：' + e.message + '。請嘗試先用其他工具轉成 MP3 再上傳。');
+    audioBlob = null;
+  }
+}
+
+function encodeWAV(samples, sampleRate) {
+  const buffer = new ArrayBuffer(44 + samples.length * 2);
+  const view = new DataView(buffer);
+
+  function writeStr(offset, str) {
+    for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+  }
+
+  writeStr(0, 'RIFF');
+  view.setUint32(4, 36 + samples.length * 2, true);
+  writeStr(8, 'WAVE');
+  writeStr(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);       // PCM
+  view.setUint16(22, 1, true);       // mono
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeStr(36, 'data');
+  view.setUint32(40, samples.length * 2, true);
+
+  // Float32 → Int16
+  let offset = 44;
+  for (let i = 0; i < samples.length; i++) {
+    const s = Math.max(-1, Math.min(1, samples[i]));
+    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    offset += 2;
+  }
+
+  return new Blob([buffer], { type: 'audio/wav' });
 }
 
 async function doTranscribe() {
   const key = document.getElementById('apiKey').value.trim();
   if (!key) { showErr('❌ 請先輸入 OpenAI API Key'); return; }
   if (!curFile) { showErr('❌ 請先選擇或拖曳影片 / 音訊檔案'); return; }
+  if (!audioBlob) { showErr('❌ 音訊尚未準備好，請等待壓縮完成'); return; }
 
   setLoading(true);
   showProg(5, '準備上傳…');
@@ -397,7 +489,8 @@ async function doTranscribe() {
 
   try {
     const fd = new FormData();
-    fd.append('file', curFile, curFile.name);
+    const filename = audioBlob === curFile ? curFile.name : 'audio.wav';
+    fd.append('file', audioBlob, filename);
     fd.append('model', 'whisper-1');
     fd.append('response_format', 'verbose_json');
     fd.append('timestamp_granularities[]', 'segment');
@@ -418,11 +511,10 @@ async function doTranscribe() {
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      const msg = err?.error?.message || '錯誤代碼 ' + res.status;
       if (res.status === 401) throw new Error('API Key 無效，請確認是否正確複製');
       if (res.status === 429) throw new Error('請求次數過多，請稍候再試');
-      if (res.status === 413) throw new Error('檔案過大，請壓縮後再上傳（上限 25 MB）');
-      throw new Error(msg);
+      if (res.status === 413) throw new Error('音訊仍超過限制，請縮短影片長度');
+      throw new Error(err?.error?.message || '錯誤代碼 ' + res.status);
     }
 
     const data = await res.json();
@@ -441,10 +533,7 @@ async function doTranscribe() {
 
     render();
     updateStats();
-
-    setTimeout(() => {
-      document.querySelector('[data-tab="editor"]').click();
-    }, 800);
+    setTimeout(() => { document.querySelector('[data-tab="editor"]').click(); }, 800);
 
   } catch (e) {
     showErr('❌ 轉錄失敗：' + e.message);
@@ -504,8 +593,8 @@ function addSub() {
 
 function updateStats() {
   const wc = subs.reduce((a, s) => a + s.text.replace(/\s/g, '').length, 0);
-  ['sCount', 'eCount'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = subs.length; });
-  ['sWords', 'eWords'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = wc; });
+  ['sCount','eCount'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = subs.length; });
+  ['sWords','eWords'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = wc; });
   const last = subs[subs.length - 1];
   const dur = document.getElementById('sDur');
   if (dur) dur.textContent = last ? last.end.split(',')[0] : '—';
@@ -513,8 +602,7 @@ function updateStats() {
 
 function exportSRT() {
   if (!subs.length) { alert('尚無字幕可匯出'); return; }
-  const txt = subs.map(s => `${s.id}\n${s.start} --> ${s.end}\n${s.text}`).join('\n\n');
-  dl(txt, '字幕.srt');
+  dl(subs.map(s => `${s.id}\n${s.start} --> ${s.end}\n${s.text}`).join('\n\n'), '字幕.srt');
 }
 function exportTXT() {
   if (!subs.length) { alert('尚無字幕可匯出'); return; }
