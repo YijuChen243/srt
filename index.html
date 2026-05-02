@@ -494,9 +494,20 @@ async function doTranscribe() {
     fd.append('model', 'whisper-1');
     fd.append('response_format', 'verbose_json');
     fd.append('timestamp_granularities[]', 'segment');
+    
     const lang = document.getElementById('lang').value;
     if (lang) fd.append('language', lang);
-    const p = document.getElementById('prompt').value.trim();
+    
+    let p = document.getElementById('prompt').value.trim();
+    
+    // ======== 強制輸出繁體中文的機制 ========
+    // 只要語言選擇是中文 (zh) 或是自動偵測，我們就在提示詞最前面加上強烈的繁體中文暗示
+    if (lang === 'zh' || lang === '') {
+      const tcPrompt = "請一律以繁體中文（台灣）輸出。";
+      p = p ? tcPrompt + " " + p : tcPrompt;
+    }
+    // =====================================
+
     if (p) fd.append('prompt', p);
 
     showProg(20, '上傳中，請稍候…');
